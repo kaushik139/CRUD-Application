@@ -89,7 +89,11 @@ export default {
       this.result.forEach(element=>{
         element.date1 = element.date1.toString().substring(0,10);
         element.date2 = element.date2.toString().substring(0,10);
-      })
+      });
+       let user = localStorage.getItem('user-mail');
+     if(!user){
+        this.$router.push({name:"login"})
+     }
   },
 };
 </script>

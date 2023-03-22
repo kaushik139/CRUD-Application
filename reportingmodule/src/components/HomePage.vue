@@ -30,6 +30,12 @@ user:`${localStorage.getItem('user-mail')}`
       this.$router.push({ name: "login" });
     },
   },
+   mounted(){
+     let user = localStorage.getItem('user-mail');
+     if(!user){
+        this.$router.push({name:"login"})
+     }
+  }
 };
 </script>
 
@@ -43,6 +49,7 @@ h1 {
   border-radius: 10px;
   padding: 15px;
   margin: auto;
+  margin-top: 20px;
   max-width: 300px;
   max-height: 400px;
   background: rgb(228, 185, 248);

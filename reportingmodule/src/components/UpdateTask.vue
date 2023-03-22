@@ -104,7 +104,11 @@ export default {
       this.inactive = true;
     }
     this.taskDetails = localStorage.getItem("task");
-    this.status = localStorage.getItem("status")
+    this.status = localStorage.getItem("status");
+     let user = localStorage.getItem('user-mail');
+     if(!user){
+        this.$router.push({name:"login"})
+     }
   },
 };
 </script>
@@ -122,6 +126,7 @@ h3 {
   border-radius: 10px;
   padding: 15px;
   margin: auto;
+  margin-top: 50px;
   max-width: 500px;
   max-height: 800px;
   background: rgb(243, 248, 185);

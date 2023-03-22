@@ -1,9 +1,6 @@
 <template>
   <div id="main">
     <h2>Admin Sign Up</h2>
-    Already a user? <a href="#" @click="login">Log In</a>
-     <button @click="login" class="b1">Log In</button><br>
-     Not an Admin? <a href="#" @click="onClick">User SignUp</a><br>
     
     <h3>Name:</h3>
     <input type="text" v-model="name" placeholder="Enter Name" />
@@ -14,7 +11,12 @@
     <br/><br>
     <input type="password" v-model="code" placeholder="Enter Admin Code"/>
     <br /><br />
-    <button class="b1" type="submit" v-on:click="signUp">Sign Up</button>
+    <button id="b1" type="submit" v-on:click="signUp">Sign Up</button>
+      <br><br>
+    Already a user? <a href="#" @click="login">Log In</a>
+     <br>
+     Not an Admin? <a href="#" @click="onClick">User SignUp</a><br>
+    
   </div>
 </template>
 <script>
@@ -37,8 +39,8 @@ export default {
         this.$router.push({name:'login'})
     },
     signUp() {
-        if(this.code==='1234'){
-           if(this.name && this.mail && this.pass && this.userType){
+        if(this.name && this.mail && this.pass && this.userType){
+           if(this.code==='1234'){
             axios.post("http://localhost:3300/users", {
         email: this.mail,
         name: this.name,
@@ -47,7 +49,7 @@ export default {
       }).then(response => console.log(response))
       prompt("Signed Up Successfully")
            }else{
-            alert(`Please fill the required details`)
+            alert(`Error: Wrong Admin Code!`)
            }
     //   console.warn("Signin", this.name, this.mail, this.pass);
       // console.warn(result);
@@ -56,14 +58,14 @@ export default {
       // }
         }
         else{
-            alert("Error: Wrong Admin Code!")
+            alert("Please fill the required details")
         }
     },
   },
   mounted(){
-     let user = localStorage.getItem('user-info');
+     let user = localStorage.getItem('user-mail');
      if(user){
-        this.$router.push({name:"homepage"})
+        this.$router.push({name:"homePage"})
      }
 
   }
@@ -71,6 +73,13 @@ export default {
 </script>
 
 <style scoped>
+a{
+  text-decoration: none;
+  color: red;
+}
+a:hover{
+  color: blue;
+}
 h3 {
   margin-bottom: 0px;
   color: rgb(129, 21, 21);
@@ -84,14 +93,18 @@ h2 {
   border-radius: 10px;
   padding: 15px;
   margin: auto;
+  margin-top: 50px;
   max-width: 300px;
   max-height: 500px;
   background: rgb(248, 185, 185);
 }
-.b1 {
+#b1 {
   width: 150px;
   background: rgb(246, 247, 252);
   color: rgba(255, 1, 1, 0.991);
   border: none;
+}
+#b1:hover{
+  color: blue;
 }
 </style>

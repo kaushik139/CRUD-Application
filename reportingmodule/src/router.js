@@ -7,6 +7,7 @@ import taskpage from "./components/TaskPage.vue"
 import addtask from "./components/AddTask.vue"
 import updatetask from "./components/UpdateTask.vue"
 import adminview from "./components/AdminView.vue"
+import pagenotfound from "./components/PageNotFound.vue"
 
 
 const routes = [
@@ -33,7 +34,7 @@ const routes = [
     {
         name: 'homePage',
         component: homePage,
-        path: '/home'
+        path: '/homePage'
     },
     {
         name:'signUp',
@@ -49,6 +50,11 @@ const routes = [
         name: 'login',
         component: login,
         path: '/login'
+    },
+    {
+        name: 'pagenotfound',
+        component: pagenotfound,
+        path: '/:pathMatch(.*)*'
     }
 ]
 

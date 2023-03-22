@@ -24,10 +24,14 @@ app.post('/users', (req, res) => {
     const userData = req.body;
     client.query(`INSERT INTO users (name,email,password,role) VALUES('${userData.name}','${userData.email}','${userData.password}','${userData.userType}')`, (err, result) => {
         if (!err) {
-            res.send(result.rows);
+            // res.send(result.rows);
+            res.send(`Sign Up successfull`)
+
         }
         else {
-            console.log(err.message)
+            // res.send(err.message);
+            console.log(err.message);
+            res.send('E-mail already Exists.');
         }
     });
     client.end;
