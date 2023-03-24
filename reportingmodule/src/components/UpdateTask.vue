@@ -109,6 +109,10 @@ export default {
      if(!user){
         this.$router.push({name:"login"})
      }
+      let taskId = localStorage.getItem('tid');
+     if(!taskId){
+        this.$router.push({name:"taskpage"})
+     }
   },
 };
 </script>

@@ -2,14 +2,14 @@
   <TopHeadder />
   <div id="main">
     <h2>Admin View</h2>
-    <h3>{{message}}</h3>
-    <div class="sub" v-for="(item,index) in result" :key="item.task_id" >
-      <p>User: {{item.name}}</p>
-      <p>Task No: {{ index+1 }}</p>
+    <h3>{{ message }}</h3>
+    <div class="sub" v-for="(item, index) in result" :key="item.task_id">
+      <p>User: {{ item.name }}</p>
+      <p>Task No: {{ index + 1 }}</p>
       <p>Task Status: {{ item.status }}</p>
       <p>Date: {{ item.date1 }} - {{ item.date2 }}</p>
       <p>Time: {{ item.time1 }} - {{ item.time2 }}</p>
-<p>{{ item.task }}</p>
+      <p>{{ item.task }}</p>
     </div>
   </div>
 </template>
@@ -25,8 +25,8 @@ export default {
   },
   data() {
     return {
-      name:"",
-      message:"",
+      name: "",
+      message: "",
       taskid: "",
       userid: "",
       task: "",
@@ -38,25 +38,27 @@ export default {
       result: [],
     };
   },
-  methods:{
-
-    },
-    async mounted(){
-      await axios
+  methods: {},
+  async mounted() {
+    await axios
       .get(`http://localhost:3300/tasks/`)
       .then((response) => {
         this.result = [...response.data];
       })
       .catch((error) => console.log(error));
-      this.result.forEach(element=>{
-        element.date1 = element.date1.toString().substring(0,10);
-        element.date2 = element.date2.toString().substring(0,10); 
-      });
-       let user = localStorage.getItem('user-mail');
-     if(!user){
-        this.$router.push({name:"login"})
-     }
-    },
+    this.result.forEach((element) => {
+      element.date1 = element.date1.toString().substring(0, 10);
+      element.date2 = element.date2.toString().substring(0, 10);
+    });
+    let user = localStorage.getItem("user-mail");
+    if (!user) {
+      this.$router.push({ name: "login" });
+    }
+    let roal = localStorage.getItem("user-role");
+    if (roal === "user") {
+      this.$router.push({ name: "pagenotfound" });
+    }
+  },
 };
 </script>
 
@@ -77,7 +79,7 @@ h3 {
   max-height: 100%;
   background: rgb(243, 248, 185);
 }
-.sub{
+.sub {
   border: solid 1px rgb(59, 231, 247);
   color: rgb(0, 94, 255);
   border-radius: 10px;

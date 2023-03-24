@@ -2,7 +2,7 @@
   <div class="nav">
     <ul>
         <li>
-             <router-link to="home">HOME</router-link>
+             <router-link to="homePage">HOME</router-link>
         </li>
         <li>
              <router-link to="addtask">Add Task</router-link>
